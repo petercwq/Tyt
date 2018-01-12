@@ -14,7 +14,7 @@ namespace PrecisionJump
         const byte TargetWR = 245, TargetWG = 245, TargetWB = 245, TargetWMaxWidthMin = 35;
         const byte PersonR = 49, PersonG = 47, PersonB = 78, PersonTolerance = 18;
         const int PersonSearchWith = 300, PersonSearchHeight = 300;
-        const double InvSpeedRight = 202.82343, OffsetRight = 41.5, InvSpeedLeft = 203.84435, OffsetLeft = 40.5;
+        const double InvSpeedLeft = 203.84436, OffsetLeft = 40.565, InvSpeedRight = 202.823435, OffsetRight = 41.38;
         const double Inch2Cm = 2.54, dpiX = 391.885, dpiY = 381.0;
 
         // adb shell dumpsys display
