@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Weiqing Chen
+// kevincwq@gmail.com
+// 2018-01-12
+
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -14,7 +18,9 @@ namespace PrecisionJump
         const byte TargetWR = 245, TargetWG = 245, TargetWB = 245, TargetWMaxWidthMin = 35;
         const byte PersonR = 49, PersonG = 47, PersonB = 78, PersonTolerance = 18;
         const int PersonSearchWith = 300, PersonSearchHeight = 300;
-        const double InvSpeedLeft = 203.84436, OffsetLeft = 40.56, InvSpeedRight = 202.823440, OffsetRight = 41.38;
+
+        // xiaomi, note3
+        const double InvSpeedLeft = 203.84436, OffsetLeft = 39, InvSpeedRight = 202.823440, OffsetRight = 41.38;
         const double Inch2Cm = 2.54, dpiX = 391.885, dpiY = 381.0;
 
         // adb shell dumpsys display
