@@ -14,7 +14,8 @@ namespace PrecisionJump
 {
     class Program
     {
-        const string ADBPATH = @"C:\Program Files (x86)\Android\android-sdk\platform-tools\adb.exe";
+        // const string ADBPATH = @"C:\Program Files (x86)\Android\android-sdk\platform-tools\adb.exe";
+        const string ADBPATH = @".\adb.exe";
         const byte TargetWR = 245, TargetWG = 245, TargetWB = 245, TargetWMaxWidthMin = 35;
         const byte PersonR = 49, PersonG = 47, PersonB = 78, PersonTolerance = 18;
         const int PersonSearchWith = 300, PersonSearchHeight = 300;
@@ -199,7 +200,6 @@ namespace PrecisionJump
                 return Math.Sqrt(dx * dx + dy * dy);
             }
         }
-
 
         static void Main(string[] args)
         {
