@@ -14,7 +14,7 @@ namespace PrecisionJump
         const byte TargetWR = 245, TargetWG = 245, TargetWB = 245, TargetWMaxWidthMin = 35;
         const byte PersonR = 49, PersonG = 47, PersonB = 78, PersonTolerance = 18;
         const int PersonSearchWith = 300, PersonSearchHeight = 300;
-        const double InvSpeedLeft = 203.84436, OffsetLeft = 40.565, InvSpeedRight = 202.823435, OffsetRight = 41.38;
+        const double InvSpeedLeft = 203.84436, OffsetLeft = 40.56, InvSpeedRight = 202.823440, OffsetRight = 41.38;
         const double Inch2Cm = 2.54, dpiX = 391.885, dpiY = 381.0;
 
         // adb shell dumpsys display
@@ -200,9 +200,11 @@ namespace PrecisionJump
             var screenshotspath = Path.Combine(Environment.CurrentDirectory, "screenshots");
 
             var cmd1 = "shell /system/bin/screencap -p /sdcard/screenshot.png";
-            var cmd2Tempate = "pull /sdcard/screenshot.png ";
-            var cmd3Tempate = "shell input swipe 400 400 400 400 ";
+            var cmd2Tempate = "pull /sdcard/screenshot.png";
+            var cmd3Tempate = "shell input swipe";
             var cmdmodel = "shell getprop ro.product.model";
+
+            var random = new Random(Environment.TickCount);
 
             var test = false;
             var start = DateTime.Now;
@@ -225,7 +227,7 @@ namespace PrecisionJump
 
                     tss[1] = DateTime.Now.Ticks;
                     var img = Path.Combine(screenshotspath, DateTime.Now.ToString("yyMMddHHmmssfff") + ".png");
-                    CmdAdb($"{cmd2Tempate}{img}");
+                    CmdAdb($"{cmd2Tempate} {img}");
 
                     tss[2] = DateTime.Now.Ticks;
                     bool direction;
@@ -236,11 +238,17 @@ namespace PrecisionJump
                     {
                         step++;
                         var time = direction ? (int)(distance * InvSpeedRight + OffsetRight) : (int)(distance * InvSpeedLeft + OffsetLeft);
-                        CmdAdb($"{cmd3Tempate}{time}");
+
+                        var startx = 800 - random.Next(100, 300);
+                        var starty = 1800 - random.Next(0, 400);
+                        var endx = startx + random.Next(20, 130);
+                        var endy = starty + random.Next(50, 100) - 50;
+
+                        CmdAdb($"{cmd3Tempate} {startx} {starty} {endx} {endy} {time}");
                         tss[4] = DateTime.Now.Ticks;
 
                         Console.WriteLine($"Step:{step}\tDis:{distance:F3}\tTime:{time}\tCMD1:{(tss[1] - tss[0]) / 1E7:F3}\tCMD2:{(tss[2] - tss[1]) / 1E7:F3}\tDIS:{(tss[3] - tss[2]) / 1E7:F3}\tCMD3:{(tss[4] - tss[3]) / 1E7:F3}");
-                        Thread.Sleep(1000);
+                        Thread.Sleep(700 + random.Next(300, 800));
                     }
                     else
                     {
