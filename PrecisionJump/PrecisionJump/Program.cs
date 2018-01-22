@@ -187,6 +187,7 @@ namespace PrecisionJump
                 tcy += 2;
                 pcy += 7;
 
+#if DEBUG
                 using (var g = Graphics.FromImage(bitmap))
                 {
                     g.DrawString($"{count1} {count2}", new Font("Arial", 20), Brushes.Red, new PointF(100, 100));
@@ -194,6 +195,8 @@ namespace PrecisionJump
                     g.FillEllipse(Brushes.Red, pcx - 2, pcy - 2, 5, 5);
                 }
                 bitmap.Save(Path.ChangeExtension(img, ".p.png"), ImageFormat.Png);
+#endif
+
                 var dx = (pcx - tcx) / dpiX * Inch2Cm;
                 var dy = (pcy - tcy) / dpiY * Inch2Cm;
                 direction = dx < 0;
